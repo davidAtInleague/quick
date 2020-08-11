@@ -180,7 +180,7 @@ component extends="quick.models.Relationships.BaseRelationship" accessors="true"
 	 * @doc_generic  any,quick.models.BaseEntity
 	 * @return       {any: quick.models.BaseEntity}
 	 */
-	public struct function buildDictionary( required array results ) {
+	private struct function buildDictionary( required array results ) {
 		return arguments.results.reduce( function( dict, result ) {
 			var key = variables.foreignKeys
 				.map( function( foreignKey ) {
@@ -206,7 +206,7 @@ component extends="quick.models.Relationships.BaseRelationship" accessors="true"
 	 *
 	 * @return      quick.models.BaseEntity | [quick.models.BaseEntity]
 	 */
-	public any function getRelationValue(
+	private any function getRelationValue(
 		required struct dictionary,
 		required string key,
 		required string type
@@ -220,7 +220,7 @@ component extends="quick.models.Relationships.BaseRelationship" accessors="true"
 	 *
 	 * @return   any
 	 */
-	public any function getParentKeys() {
+	private any function getParentKeys() {
 		return variables.localKeys.map( function( localKey ) {
 			return variables.parent.retrieveAttribute( localKey );
 		} );
@@ -311,7 +311,7 @@ component extends="quick.models.Relationships.BaseRelationship" accessors="true"
 	 *
 	 * @return   quick.models.BaseEntity
 	 */
-	public any function setForeignAttributesForCreate( required any entity ) {
+	private any function setForeignAttributesForCreate( required any entity ) {
 		return tap( arguments.entity, function( e ) {
 			arrayZipEach(
 				[

@@ -93,7 +93,7 @@ component extends="quick.models.Relationships.BelongsTo" accessors="true" {
 	 *
 	 * @return  {string: {any: quick.models.BaseEntity}}
 	 */
-	public struct function buildDictionary() {
+	private struct function buildDictionary() {
 		variables.dictionary = variables.entities.reduce( function( dict, entity ) {
 			var type = arguments.entity.retrieveAttribute( variables.morphType );
 			if ( !structKeyExists( arguments.dict, type ) ) {
@@ -144,7 +144,7 @@ component extends="quick.models.Relationships.BelongsTo" accessors="true" {
 	 * @doc_generic  quick.models.BaseEntity
 	 * @return       [quick.models.BaseEntity]
 	 */
-	public array function getResultsByType( required string type ) {
+	private array function getResultsByType( required string type ) {
 		var instance = createModelByType( arguments.type ).with( variables.related.get_eagerLoad() );
 
 		var localKeys = variables.localKeys.isEmpty() ? instance.keyNames() : variables.localKeys;
@@ -170,7 +170,7 @@ component extends="quick.models.Relationships.BelongsTo" accessors="true" {
 	 * @doc_generic  any
 	 * @return       [any]
 	 */
-	public array function gatherKeysByType( required string type ) {
+	private array function gatherKeysByType( required string type ) {
 		return unique(
 			structReduce(
 				variables.dictionary[ arguments.type ],
@@ -200,7 +200,7 @@ component extends="quick.models.Relationships.BelongsTo" accessors="true" {
 	 *
 	 * @return  quick.models.BaseEntity
 	 */
-	public any function createModelByType( required string type ) {
+	private any function createModelByType( required string type ) {
 		return variables.wirebox.getInstance( arguments.type );
 	}
 
@@ -212,7 +212,7 @@ component extends="quick.models.Relationships.BelongsTo" accessors="true" {
 	 *
 	 * @return   quick.models.Relationships.PolymorphicBelongsTo
 	 */
-	public PolymorphicBelongsTo function matchToMorphParents( required string type, required array results ) {
+	private PolymorphicBelongsTo function matchToMorphParents( required string type, required array results ) {
 		for ( var result in arguments.results ) {
 			var localDictionaryKey = variables.localKeys.isEmpty() ? result.keyValues().toList() : variables.localKeys
 				.map( function( localKey ) {

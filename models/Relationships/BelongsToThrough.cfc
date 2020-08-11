@@ -88,7 +88,7 @@ component extends="quick.models.Relationships.BaseRelationship" {
 	 *
 	 * @return  quick.models.Relationships.BelongsToThrough
 	 */
-	public BelongsToThrough function performJoin( any base = variables.related ) {
+	private BelongsToThrough function performJoin( any base = variables.related ) {
 		// no arrayReverse in ACF means for loops. :-(
 		for ( var index = variables.relationships.len(); index > 1; index-- ) {
 			var relationshipName = variables.relationships[ index ];
@@ -143,7 +143,7 @@ component extends="quick.models.Relationships.BaseRelationship" {
 	 * @doc_generic  any,quick.models.BaseEntity
 	 * @return       {any: quick.models.BaseEntity}
 	 */
-	public struct function buildDictionary( required array results ) {
+	private struct function buildDictionary( required array results ) {
 		return arguments.results.reduce( function( dict, result ) {
 			var key = result.retrieveAttribute( "__QuickThroughKey__" );
 			if ( !structKeyExists( arguments.dict, key ) ) {

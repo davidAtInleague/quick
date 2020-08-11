@@ -88,7 +88,7 @@ component extends="quick.models.Relationships.BaseRelationship" accessors="true"
 		return this;
 	}
 
-	public QuickBuilder function addNestedWhereExists( required QuickBuilder base ) {
+	private QuickBuilder function addNestedWhereExists( required QuickBuilder base ) {
 		for ( var index = 2; index <= variables.relationships.len(); index++ ) {
 			var relationshipName = variables.relationships[ index ];
 			var relation         = variables.relationshipsMap[ relationshipName ];
@@ -117,7 +117,7 @@ component extends="quick.models.Relationships.BaseRelationship" accessors="true"
 	 *
 	 * @return  quick.models.Relationships.HasOneOrManyThrough
 	 */
-	public HasOneOrManyThrough function performJoin( any base = variables.related ) {
+	private HasOneOrManyThrough function performJoin( any base = variables.related ) {
 		// no arrayReverse in ACF means for loops. :-(
 		for ( var index = variables.relationships.len(); index > 0; index-- ) {
 			var relationshipName = variables.relationships[ index ];
@@ -172,7 +172,7 @@ component extends="quick.models.Relationships.BaseRelationship" accessors="true"
 	 * @doc_generic  any,quick.models.BaseEntity
 	 * @return       {any: quick.models.BaseEntity}
 	 */
-	public struct function buildDictionary( required array results ) {
+	private struct function buildDictionary( required array results ) {
 		return arguments.results.reduce( function( dict, result ) {
 			var key = result.retrieveAttribute( "__QuickThroughKey__" );
 			if ( !structKeyExists( arguments.dict, key ) ) {

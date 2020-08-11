@@ -161,7 +161,7 @@ component extends="quick.models.Relationships.BaseRelationship" accessors="true"
 	 * @doc_generic  any
 	 * @return       [any]
 	 */
-	public array function getEagerEntityKeys( required array entities ) {
+	private array function getEagerEntityKeys( required array entities ) {
 		return arguments.entities
 			.reduce( function( keys, entity ) {
 				var values = variables.foreignKeys

@@ -189,7 +189,7 @@ component extends="quick.models.Relationships.BaseRelationship" accessors="true"
 		required array results,
 		required string relation
 	) {
-		var dictionary = variables.buildDictionary( arguments.results );
+		var dictionary = buildDictionary( arguments.results );
 		arguments.entities.each( function( entity ) {
 			var parentDictionaryKey = variables.parentKeys
 				.map( function( parentKey ) {
