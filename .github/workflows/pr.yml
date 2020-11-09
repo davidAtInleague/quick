@@ -1,5 +1,8 @@
 name: PRs and Branches
 
+env:
+  BOX_JAVA_ARGS: -Dorg.jline.terminal.dumb.color=true
+
 on:
   push:
     branches-ignore:
