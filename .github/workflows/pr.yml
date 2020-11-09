@@ -1,8 +1,5 @@
 name: PRs and Branches
 
-env:
-  BOX_JAVA_ARGS: -Dorg.jline.terminal.dumb.color=true
-
 on:
   push:
     branches-ignore:
@@ -48,7 +45,7 @@ jobs:
         uses: elpete/setup-commandbox@v1.0.0
 
       - name: Show CommandBox Info
-        run: which box
+        run: echo "org.jline.terminal.dumb.color=true" >> /usr/local/bin/commandbox.properties
       
       - name: Install dependencies
         run: |
