@@ -84,7 +84,9 @@ jobs:
         uses: elpete/setup-commandbox@v1.0.0
 
       - name: Configure colors
-        run: sudo echo "org.jline.terminal.dumb.color=true" >> /usr/local/bin/commandbox.properties
+        run: |
+          sudo touch /usr/local/bin/commandbox.properties
+          echo "org.jline.terminal.dumb.color=true" > /usr/local/bin/commandbox.properties
       
       - name: Install CFFormat
         run: box install commandbox-cfformat
