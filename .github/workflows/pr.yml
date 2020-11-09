@@ -43,6 +43,9 @@ jobs:
 
       - name: Set Up CommandBox
         uses: elpete/setup-commandbox@v1.0.0
+
+      - name: Show CommandBox Info
+        run: box info
       
       - name: Install dependencies
         run: |
