@@ -65,18 +65,18 @@ component extends="tests.resources.ModuleIntegrationSpec" appMapping="/app" {
 				expect( user.countryName ).toBe( "United States" );
 			} );
 
-            it( "does not apply select bindings from global scopes when doing an aggregate query", function() {
-                writeDump( var = 'before' );
-                var result = getInstance( "UserWithGlobalScope" ).paginate();
-                writeDump( var = 'after' );
-                expect( result ).toHaveKey( "pagination" );
-                expect( result.pagination ).toHaveKey( "totalRecords" );
-                expect( result.pagination.totalRecords ).toBe( 5 );
-                expect( result ).toHaveKey( "results" );
-                expect( result.results ).toBeArray();
-                expect( result.results ).toHaveLength( 5 );
-                expect( result.results[ 1 ].getCountryName() ).toBe( "United States" );
-            } );
+			it( "does not apply select bindings from global scopes when doing an aggregate query", function() {
+				writeDump( var = "before" );
+				var result = getInstance( "UserWithGlobalScope" ).paginate();
+				writeDump( var = "after" );
+				expect( result ).toHaveKey( "pagination" );
+				expect( result.pagination ).toHaveKey( "totalRecords" );
+				expect( result.pagination.totalRecords ).toBe( 5 );
+				expect( result ).toHaveKey( "results" );
+				expect( result.results ).toBeArray();
+				expect( result.results ).toHaveLength( 5 );
+				expect( result.results[ 1 ].getCountryName() ).toBe( "United States" );
+			} );
 		} );
 	}
 

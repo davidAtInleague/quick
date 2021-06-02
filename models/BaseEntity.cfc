@@ -2950,8 +2950,8 @@ component accessors="true" {
 	 * @return  quick.models.BaseEntity
 	 */
 	public any function activateGlobalScopes() {
-        if ( !variables._globalScopesApplied ) {
-            writeDump( var = 'here' );
+		if ( !variables._globalScopesApplied ) {
+			writeDump( var = "here" );
 			variables._applyingGlobalScopes = true;
 			applyGlobalScopes();
 			variables._applyingGlobalScopes = false;
