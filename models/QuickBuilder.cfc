@@ -57,6 +57,26 @@ component extends="qb.models.Query.QueryBuilder" accessors="true" {
 	}
 
 	/**
+	 * Adds a single binding or an array of bindings to a query for a given type.
+	 *
+	 * @newBindings A single binding or an array of bindings to add for a given type.
+	 * @type The type of binding to add.
+	 *
+	 * @return qb.models.Query.QueryBuilder
+	 */
+	private QueryBuilder function addBindings( required any newBindings, string type = "where" ) {
+		if (
+			arguments.type == "select" &&
+			getEntity().isApplyingGlobalScopes() &&
+			!getAggregate().isEmpty()
+		) {
+			return this;
+		}
+
+		return super.addBindings( argumentCollection = arguments );
+	}
+
+	/**
 	 * Updates a table with a struct of column and value pairs.
 	 * This call must come after setting the query's table using `from` or `table`.
 	 * Any constraining of the update query should be done using the appropriate WHERE statement before calling `update`.

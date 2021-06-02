@@ -7,4 +7,5 @@ component extends="User" table="users"  accessors="true" {
     function applyGlobalScopes() {
         this.withCountryName();
     }
+
 }

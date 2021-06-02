@@ -2882,6 +2882,15 @@ component accessors="true" {
 	}
 
 	/**
+	 * Checks if the entity is currently applying global scopes.
+	 *
+	 * @return  Boolean
+	 */
+	public boolean function isApplyingGlobalScopes() {
+		return variables._applyingGlobalScopes;
+	}
+
+	/**
 	 * Attempts to call a query scope on the entity.
 	 *
 	 * @missingMethodName       The potential scope name.
@@ -2899,7 +2908,7 @@ component accessors="true" {
 		}
 
 		if (
-			variables._applyingGlobalScopes &&
+			isApplyingGlobalScopes() &&
 			arrayContains( variables._globalScopeExclusions, lCase( arguments.missingMethodName ) )
 		) {
 			return this;
@@ -2941,7 +2950,8 @@ component accessors="true" {
 	 * @return  quick.models.BaseEntity
 	 */
 	public any function activateGlobalScopes() {
-		if ( !variables._globalScopesApplied ) {
+        if ( !variables._globalScopesApplied ) {
+            writeDump( var = 'here' );
 			variables._applyingGlobalScopes = true;
 			applyGlobalScopes();
 			variables._applyingGlobalScopes = false;
