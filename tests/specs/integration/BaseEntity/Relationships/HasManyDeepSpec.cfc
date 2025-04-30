@@ -17,7 +17,6 @@ component extends="tests.resources.ModuleIntegrationSpec" {
 			beforeEach( function() {
 				variables.queries = [];
 			} );
-
 			it( "can get the related entities through another entity", function() {
 				expect( variables.queries ).toHaveLength( 0, "No queries should have been executed yet." );
 
@@ -144,6 +143,19 @@ component extends="tests.resources.ModuleIntegrationSpec" {
 				expect( officemates[ 2 ].getId() ).toBe( 3 );
 				expect( officemates[ 3 ].getId() ).toBe( 4 );
 			} );
+
+			it( "withCount via hasManyThrough and a mixture of non-composite and composite keys works", () => {
+				var v = getInstance( "HasManyDeepKeyTest_A" )
+					.withCount( {
+						"Cs as countOfCs" : () => {
+						}
+					} )
+					.where( "aID", "=", "a1" )
+					.asQuery()
+					.firstOrFail();
+
+				expect( v.countOfCs ).toBe( 2 );
+			} )
 		} );
 	}
 
