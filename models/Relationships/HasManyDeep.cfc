@@ -229,17 +229,13 @@ component
 		var foreignKeys = [];
 		for ( var i = 1; i <= variables.foreignKeys.len(); i++ ) {
 			if ( i > variables.throughParents.len() ) {
-				if ( isArray( variables.foreignKeys[ i ] ) ) {
-					foreignKeys.append( variables.related.qualifyColumn( variables.foreignKeys[ i ][ 2 ] ) );
-				} else {
-					foreignKeys.append( variables.related.qualifyColumn( variables.foreignKeys[ i ] ) );
-				}
+				arrayWrap( variables.foreignKeys[ i ] ).each( function( key ) {
+					foreignKeys.append( variables.related.qualifyColumn( key ) )
+				} )
 			} else {
-				if ( isArray( variables.foreignKeys[ i ] ) ) {
-					foreignKeys.append( variables.throughParents[ i ].qualifyColumn( variables.foreignKeys[ i ][ 2 ] ) );
-				} else {
-					foreignKeys.append( variables.throughParents[ i ].qualifyColumn( variables.foreignKeys[ i ] ) );
-				}
+				arrayWrap( variables.foreignKeys[ i ] ).each( function( key ) {
+					foreignKeys.append( variables.throughParents[ i ].qualifyColumn( key ) )
+				} )
 			}
 		}
 		return foreignKeys;
